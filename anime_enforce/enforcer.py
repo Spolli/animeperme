@@ -38,10 +38,11 @@ class Enforcer:
         result = []
         for a in div:
             anchor = a.find('a', attrs={"href": True})
-            name = re.sub(r" s?u?b? ?ita.+", "", anchor.getText(), 0, re.IGNORECASE)
+            name = re.sub(r" e?p?i?s?o?d?i.+", "", anchor.getText(), 0, re.IGNORECASE)
+            episode = re.sub(r" e?p?i?s?o?d?i? ?s?u?b? ?ita.+", "", anchor.getText(), 0, re.IGNORECASE)
             #print(name + '\t' + name.split(' ')[-1])
-            tmp = name.split(' ')
-            episode = int(tmp[tmp.index('Episodio') + 1]) + 1
+            #tmp = name.split(' ')
+            #episode = int(tmp[tmp.index('Episodio') + 1]) + 1
             href = anchor.get("href")
             hrefEpisodeList = f'{href[:href.find("episodi")]}sub-ita-download-streaming/'
             result.append(Anime(name=name, link=hrefEpisodeList, episode=episode))
