@@ -26,8 +26,8 @@ def send_video_telegram(context, update, episode, filename):
     context.bot.send_video(
         chat_id=update.message.chat.id, 
         video=open(filename, 'rb'),
-        caption=f'#{episode.name} | Episode: {episode.number}',
-        supports_streaming=True
+        caption=f'#{episode.name} | Episode: {episode.number}'
+        #supports_streaming=True
     )
 
 def downloadVideo(context, update, episode):
@@ -42,6 +42,7 @@ def downloadVideo(context, update, episode):
         delete_file(filename)
 
 def download_video(context, update, episode):
+    print(episode.link)
     if not episode.link is None:
         url = episode.download_link()
         name = '-'.join(episode.name.split(' '))
@@ -63,9 +64,10 @@ def start(update, context):
     while True:
         anime_list = enforcer.last_episode_list()
         for anime in anime_list:
-            last_episode = anime._get_last_episode()
-            if db.find_record(last_episode) is None:
-                download_video(context, update, last_episode)
+            if anime.episode < 30:
+                last_episode = anime._get_last_episode()
+                if db.find_record(last_episode) is None:
+                    download_video(context, update, last_episode)
         time.sleep(3600)
         
 
@@ -89,7 +91,7 @@ def main():
     dp.add_handler(CommandHandler("animelist", animelist, pass_args=False))
     # Start the Bot
     updater.start_polling()
-    updater.start_webhook(listen='127.0.0.1', port=5002, url_path=TOKEN_API)
+    #updater.start_webhook(listen='127.0.0.1', port=5002, url_path=TOKEN_API)
     updater.idle()
 
 if __name__ == '__main__':

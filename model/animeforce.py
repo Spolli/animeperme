@@ -104,18 +104,14 @@ class Anime:
         tables = soup.find_all("table")
         if tables and len(tables) > 1:
             for index, tr in enumerate(tables[1].find_all("tr")):
-                if not tr.find("th") and self.episode < 100 and index+1 == self.episode:
+                if not tr.find("th") and index+1 == self.episode:
                     tds = tr.find_all("td")
                     link = tds[1].find("a", attrs={"href": True})["href"]
                     link = link_fix(link)
                     return Episode(self.name, link, self.episode)
-                else:
-                    return Episode(self.name, None, self.episode)
-            return None
-        return None
 
     def __repr__(self):
-        return "<Anime object name='{}'>".format(self.name)
+        return "<Anime object name='{}' episode='{}'>".format(self.name, self.episode)
 
 
 class Episode:
@@ -162,7 +158,7 @@ class Episode:
             return -1
 
     def __repr__(self):
-        return "<Episode object name='{}'>".format(self.nome)
+        return "<Episode object name='{}'>".format(self.name)
 
 
 def link_fix(link):
