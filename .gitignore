@@ -103,8 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-config.py
+src/config.py
 
 /animeperme
-/src/video
+src/video
 *.session

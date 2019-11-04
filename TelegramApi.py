@@ -16,7 +16,7 @@ async def main():
     prog_bar = Bar('\t\tUploading: File\t\t', max=file_size)
     file_id = await bot.send_file(
         entity='spolli',
-        file=open('./src/video/Kandagawa-Jet-Girls.mp4', 'rb'),
+        file='./src/video/Kandagawa-Jet-Girls.mp4',
         caption='Sample',
         supports_streaming=True,
         part_size_kb=512,
@@ -31,11 +31,11 @@ async def main2():
     print('Start Uploading...')
     file_id = await bot.upload_file(
         file=open('./src/video/Kandagawa-Jet-Girls.mp4', 'rb'),
-
+        part_size_kb=512,
         file_name='sample'
     )
     print('Finish Uploading...')
     print(file_id.stringify())
 
 with bot:
-    bot.loop.run_until_complete(main())
+    bot.loop.run_until_complete(main2())
