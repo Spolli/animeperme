@@ -108,3 +108,4 @@ src/config.py
 /animeperme
 src/video
 *.session
+.vscode/settings.json
