@@ -11,7 +11,7 @@ pyasn1==0.4.7
 pycparser==2.19
 python-telegram-bot==12.2.0
 requests==2.22.0
-rsa==4.0
+rsa==4.7
 six==1.12.0
 soupsieve==1.9.4
 Telethon==1.10.6
